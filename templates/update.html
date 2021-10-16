@@ -1,0 +1,23 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="/static/styles.css" />
+<h2>This will be the update section</h2>
+
+    <form class="form" action="/self" method="POST">
+       <input type="submit" value="Update by Item Number" formaction="/updatebyitem">
+
+    </form>
+
+<br>
+    <form class="form" action="/searchresult" method="POST">
+       <input type="submit" value="Update by Box Number" formaction="/updatebybox">
+
+    </form>
+
+
+
+
+{% endblock %}

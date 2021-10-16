@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h2>update by box </h2>
+
+    <link rel="stylesheet" href="/static/styles.css" />
+
+
+    <form class="form" action="/updateresultbybox" method="POST">
+        <div class="input-group mb-3">
+
+            <div class="form-check" >
+                <input class="form-check-input" type="radio" name="update" id="increase" value="increase">
+                <label class="form-check-label" for="increase">
+                Increase
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="update" id="decrease" value="decrease" >
+                <label class="form-check-label" for="decrease">
+                Decrease
+                </label>
+            </div>
+           </br>
+        </div>
+
+        <div class="col-sm-3">
+                <input type="number" class="form-control" aria-label="Item Number" aria-describedby="inputGroup-sizing-default" placeholder = "Box Number" name = "box_number">
+        </div>
+
+        <br>
+
+        <div class="input-group mb-3">
+            <div class="col-sm-3">
+                <input type="number" class="form-control" aria-label="Box Number" aria-describedby="inputGroup-sizing-default" placeholder = "Update Quantity" name = "quantity">
+            </div>
+        </div>
+
+
+         <button type="submit" class="btn btn-secondary">Update</button>
+    </form>
+
+{% endblock %}

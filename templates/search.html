@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="/static/styles.css" />
+<h2>This will be the item look up section</h2>
+
+    <form class="form" action="/searchresult" method="POST">
+       <input type="submit" value="Search by Item Number" formaction="/searchbyitemnumber">
+
+    </form>
+
+<br>
+    <form class="form" action="/searchresult" method="POST">
+       <input type="submit" value="Search by Description" formaction="/searchbydescription">
+
+    </form>
+
+
+
+
+{% endblock %}
