@@ -8,7 +8,7 @@ app = Flask (__name__)
 app.config['MYSQL_HOST'] = 'us-cdbr-east-04.cleardb.com'
 app.config['MYSQL_USER'] = 'bf92da29ab98b1'
 app.config['MYSQL_PASSWORD'] = '8da85e36'
-app.config['MYSQL_DB'] = 'heroku_14'
+app.config['MYSQL_DB'] = 'heroku_147cceb9bbe24e3'
 
 mydb = MySQL(app)
 
@@ -18,12 +18,12 @@ def index():
     title = "SJUSD Tech Inventory"
     return render_template("index.html", title=title)
 
-@app.route('/search', methods=['POST'])
+@app.route('/search', methods=['POST', 'GET'])
 def search():
     items = ["Cable", "Hardware", "Software", "Networking"]
     return render_template("search.html", items = items)
 
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['POST', 'GET'])
 def update():
     return render_template("update.html")
 
