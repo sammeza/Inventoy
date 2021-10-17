@@ -44,7 +44,7 @@ def searchresultitems():
     itemidcheck = int(itemid)
     cur = mydb.connection.cursor()
 
-    cur.execute("SELECT ItemNumber, ItemDescription, ItemBoxNumber, ItemCurrentStock  from items WHERE ItemNumber = %s", itemid)
+    cur.execute("SELECT ItemNumber, ItemDescription, ItemBoxNumber, ItemCurrentStock  from items WHERE ItemNumber = %s", ([itemid]))
 
     fetchdata = cur.fetchall()
     cur.close()
