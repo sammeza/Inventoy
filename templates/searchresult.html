@@ -1,13 +1,17 @@
+
+
+
 {% extends 'base.html' %}
 {% block content %}
 
-<link rel="stylesheet" href="/static/styles.css" />
+<link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}"  />
+
     <h2>Search Result</h2>
 
-        <table class="table">
+        <table class="table" id="table">
             <tr class="table__header">
                 {% for header in headings %}
-                    <th class="table__cell"> {{ header }}</th>
+                    <th class="table__cell" id= {{ header }} > {{ header }}</th>
                 {% endfor %}
             </tr>
 
@@ -19,6 +23,21 @@
                     </tr>
                 {% endfor %}
         </table>
+
+<form class="edit-form"  method="POST">
+<button onclick=" editTable()"> Edit </button> <br>
+
+
+    <div class="editTable">
+        <div class="left>">ItemNumber</div><div><input type="number" id="itemNumber1"></div><br>
+        <div class="left>">Description</div><div><input type="text" id="itemDescription"></div><br>
+        <div class="left>">Box #</div><div><input type="number" id="itemBoxNumber"></div><br>
+        <div class="left>">Current Stock</div><div><input type="number" id="itemStock"></div><br>
+        <button onclick="EditCell()" class="editCellButton">Update</button>
+    </div>
+</form>
+
+<script type="text/javascript" src="{{ url_for('static', filename= 'js/javascript.js')}}"> </script>
 
 
 {% endblock %}

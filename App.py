@@ -61,7 +61,7 @@ def searchresultdescription():
 
     fetchdata = cur.fetchall()
     cur.close()
-    headings = ("ItemID", "Description", "Box#", "CurrentStock")
+    headings = ("ItemID", "Description", "Box#", "CurrentStock", "Edit")
     return render_template("searchresult.html",  data=fetchdata, headings=headings)
 
 @app.route('/updatebyitem', methods=['POST'])
