@@ -61,7 +61,7 @@ def searchresultdescription():
 
     fetchdata = cur.fetchall()
     cur.close()
-    headings = ("ItemID", "Description", "Box#", "CurrentStock", "Edit")
+    headings = ("ItemID", "Description", "Box#", "CurrentStock")
     return render_template("searchresult.html",  data=fetchdata, headings=headings)
 
 @app.route('/updatebyitem', methods=['POST'])
@@ -117,8 +117,39 @@ def updateresultbybox():
 
 
 
-    return render_template("updateresult.html", identifier=boxid, myupdate=myupdate)
+    return render_template("updateresult.html", identifier=boxid)
 
+@app.route('/EditRow',methods=['POST'])
+def EditRow():
+    itemid = int(request.form.get("item_number"))
+    description = (request.form.get("item_description"))
+    boxid = int(request.form.get("item_boxnumber"))
+    itemStock = int(request.form.get("item_stock"))
+
+    cur = mydb.connection.cursor()
+    sql1 = "UPDATE items SET ItemCurrentStock =%d WHERE ItemNumber=%d" % (itemStock, itemid)
+    sql2 = "UPDATE items SET ItemDescription = %s WHERE ItemNumber=%s"
+    val = (description, itemid)
+
+    cur.execute(sql1)
+    cur.execute(sql2, val)
+
+    mydb.connection.commit()
+    cur.close()
+
+    return render_template("updateresult.html", identifier=boxid)
+
+@app.route('/viewtable',methods=['POST'])
+def viewtable():
+
+    cur = mydb.connection.cursor()
+
+    cur.execute('SELECT * FROM items')
+
+    fetchdata = cur.fetchall()
+    cur.close()
+    headings = ("ItemID", "Description", "CommonName", "Picture", "Type", "Vendor", "ProductNumber", "Box #", "CurrentStock", "Restock Level" )
+    return render_template("viewtable.html", data=fetchdata, headings=headings)
 
 
 if __name__ == '__main__':

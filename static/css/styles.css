@@ -36,3 +36,15 @@
     padding: 50px
 
 }
+
+.editTable{
+    display:none
+}
+
+.btnContainer{
+    display:inline-block
+}
+
+.edit-table{
+    display:none
+}

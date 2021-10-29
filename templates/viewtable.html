@@ -9,7 +9,7 @@
 
     <h2>Search Result</h2>
 
-        <table class="table" id="table">
+        <table class="table" id="sqltable">
             <tr class="table__header">
                 {% for header in headings %}
                     <th class="table__cell" id= {{ header }} > {{ header }}</th>
@@ -27,21 +27,35 @@
         </table>
 
 <form class="edit-form" method="POST" >
-<button onclick="editTable()" id="editTableBtn" type="button"> Edit </button> <br>
+<div id="btnContainer">
+    <button onclick="editTable()" id="editTableBtn" type="button"> Edit </button>
+    <button onclick="editTable()" id="addRow" type="button"> Add Row </button>
+    <button onclick="editTable()" id="deleteRow" type="button"> Delete Row </button>
+</div>
+<br>
+    <br>
 
 
-    <div class="editTable" id="editTable">
+    <div class="edit-table" id="edit-table">
         <div class="left>" id="editTable">ItemNumber </div><div><input type="number" id="item_number" name="item_number"></div><br>
         <div class="left>" id = "editTable">Description</div><div><input type="text" id="item_description" name="item_description"></div><br>
+        <div class="left>" id="editTable">Common Name</div><div><input type="text" id="item_commonname" name="item_commonname"></div><br>
+        <div class="left>" id="editTable">Type</div><div><input type="text" id="item_type" name="item_type"></div><br>
+        <div class="left>" id="editTable">Vendor</div><div><input type="text" id="item_vendor" name="item_vendor"></div><br>
+        <div class="left>" id="editTable">Product Number</div><div><input type="number" id="item_productnumber" name="item_productnumber"></div><br>
         <div class="left>" id="editTable">Box #</div><div><input type="number" id="item_boxnumber" name="item_boxnumber"></div><br>
         <div class="left>" id="editTable">Current Stock</div><div><input type="number" id="item_stock" name="item_stock"></div><br>
+        <div class="left>" id="editTable">Restock Level</div><div><input type="number" id="item_restock" name="item_restock"></div><br>
+
+
+
         <form class="form" action="/searchresult" method="POST">
             <input type="submit" value="Update" formaction="/EditRow">
         </form>
     </div>
 </form>
 
-<script type="text/javascript" src="{{ url_for('static', filename= 'js/javascript.js')}}"> </script>
+<script type="text/javascript" src="{{ url_for('static', filename= 'js/javascript2.js')}}"> </script>
 
 
 {% endblock %}
