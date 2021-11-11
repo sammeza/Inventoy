@@ -46,5 +46,21 @@
 }
 
 .edit-table{
-    display:none
+    display: none;
+    width: 400px;
+    float:left; /* add this */;
 }
+
+.add-row{
+    display: none;
+    float: left; /* add this */;
+}
+
+.formContainer{
+    width: 800px;
+    border: 1px solid black;
+    overflow: hidden; /* will contain if #first is longer than #second */;
+}
+
+
+

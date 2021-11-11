@@ -139,7 +139,7 @@ def EditRow():
 
     return render_template("updateresult.html", identifier=boxid)
 
-@app.route('/viewtable',methods=['POST'])
+@app.route('/viewtable',methods=['POST', 'GET'])
 def viewtable():
 
     cur = mydb.connection.cursor()
@@ -148,8 +148,89 @@ def viewtable():
 
     fetchdata = cur.fetchall()
     cur.close()
-    headings = ("ItemID", "Description", "CommonName", "Picture", "Type", "Vendor", "ProductNumber", "Box #", "CurrentStock", "Restock Level" )
+    headings = ("ItemID", "Description", "CommonName", "Picture", "Type", "Vendor", "ProductNumber", "Box #", "CurrentStock", "Restock Level" ,"Reorder?")
     return render_template("viewtable.html", data=fetchdata, headings=headings)
+
+@app.route('/addRow',methods=['POST', 'GET'])
+def addRow():
+    description = (request.form.get("item_description2"))
+    commonName = (request.form.get("item_commonname2"))
+    type = (request.form.get("item_type2"))
+    vendor = (request.form.get("item_vendor2"))
+    productNumber = (request.form.get("item_productnumber2"))
+    boxNumber = (request.form.get("item_boxnumber2"))
+    currentStock = (request.form.get("item_stock2"))
+    restockLevel =(request.form.get("item_restock2"))
+    reorder = (request.form.get("item_reorder2"))
+
+
+
+
+    cur = mydb.connection.cursor()
+    sql = """INSERT INTO items(ItemDescription,ItemCommonName,ItemCategory, ItemVendor,ItemVendorID,ItemBoxNumber,ItemCurrentStock,ItemRestockLevel,ItemReorder) 
+            VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s )"""
+
+    val=[description, commonName, type, vendor, productNumber, boxNumber, currentStock, restockLevel, reorder]
+
+    cur.execute(sql, val)
+
+    mydb.connection.commit()
+    cur.close()
+
+    return render_template("updateresult.html", val=val)
+
+
+@app.route('/EditSqlTable', methods=['POST', 'GET'])
+def EditSqlTable():
+    itemid = (request.form.get('item_number'))
+    description = (request.form.get("item_description"))
+    commonName = (request.form.get("item_commonname"))
+    type = (request.form.get("item_type"))
+    vendor = (request.form.get("item_vendor"))
+    productNumber = (request.form.get("item_productnumber"))
+    boxNumber = (request.form.get("item_boxnumber"))
+    currentStock = (request.form.get("item_stock"))
+    restockLevel = (request.form.get("item_restock"))
+    reorder = (request.form.get("item_reorder"))
+
+    cur = mydb.connection.cursor()
+    sql1 = "UPDATE items SET itemDescription =%s WHERE ItemNumber=%s"
+    sql2 ="UPDATE items SET itemcommonName =%s WHERE ItemNumber=%s"
+    sql3 = "UPDATE items SET itemCategory =%s WHERE ItemNumber=%s"
+    sql4 = "UPDATE items SET itemVendor =%s WHERE ItemNumber=%s"
+    sql5 = "UPDATE items SET itemVendorID =%s WHERE ItemNumber=%s"
+    sql6 = "UPDATE items SET itemBoxNumber =%s WHERE ItemNumber=%s"
+    sql7 = "UPDATE items SET itemCurrentStock =%s WHERE ItemNumber=%s"
+    sql8 = "UPDATE items SET itemRestockLevel =%s WHERE ItemNumber=%s"
+    sql9 = "UPDATE items SET itemReorder =%s WHERE ItemNumber=%s"
+
+    val1= [description, itemid]
+    val2= [commonName, itemid]
+    val3 =[type, itemid]
+    val4 =[vendor, itemid]
+    val5 =[productNumber, itemid]
+    val6 =[boxNumber, itemid]
+    val7 =[currentStock, itemid]
+    val8 =[restockLevel, itemid]
+    val9 =[reorder, itemid]
+
+    cur.execute(sql1, val1)
+    cur.execute(sql2, val2)
+    cur.execute(sql3, val3)
+    cur.execute(sql4, val4)
+    cur.execute(sql5, val5)
+    cur.execute(sql6, val6)
+    cur.execute(sql7, val7)
+    cur.execute(sql8, val8)
+    cur.execute(sql9, val9)
+
+    mydb.connection.commit()
+    cur.close()
+
+    return render_template("updateresult.html", identiier=itemid)
+
+
+
 
 
 if __name__ == '__main__':

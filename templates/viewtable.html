@@ -28,32 +28,44 @@
 
 <form class="edit-form" method="POST" >
 <div id="btnContainer">
-    <button onclick="editTable()" id="editTableBtn" type="button"> Edit </button>
-    <button onclick="editTable()" id="addRow" type="button"> Add Row </button>
-    <button onclick="editTable()" id="deleteRow" type="button"> Delete Row </button>
+    <button onclick="editTable()" id="editSqlTableBtn" type="button"> Edit </button>
+    <button onclick="addMyRow()" id="addMyRowBtn" type="button" > Add </button>
 </div>
-<br>
-    <br>
 
+<br><br>
+   <div id="formContainer">
+        <div class="edit-table" id="edit-table">
+            <div class="left>">ItemNumber </div><div><input type="number" id="item_number" name="item_number"></div><br>
+            <div class="left>" >Description</div><div><input type="text" id="item_description" name="item_description"></div><br>
+            <div class="left>" >Common Name</div><div><input type="text" id="item_commonname" name="item_commonname"></div><br>
+            <div class="left>" >Type</div><div><input type="text" id="item_type" name="item_type"></div><br>
+            <div class="left>" >Vendor</div><div><input type="text" id="item_vendor" name="item_vendor"></div><br>
+            <div class="left>" >Product Number</div><div><input type="number" id="item_productnumber" name="item_productnumber"></div><br>
+            <div class="left>" >Box Number</div><div><input type="number" id="item_boxnumber" name="item_boxnumber"></div><br>
+            <div class="left>" >Current Stock</div><div><input type="number" id="item_stock" name="item_stock"></div><br>
+            <div class="left>" >Restock Level</div><div><input type="number" id="item_restock" name="item_restock"></div><br>
+            <div class="left>" >Reorder</div><div><input type="text" id="item_reorder" name="item_reorder"></div><br>
+            <input type="submit" value="Edit Row" formaction="/EditSqlTable">
+        </div>
 
-    <div class="edit-table" id="edit-table">
-        <div class="left>" id="editTable">ItemNumber </div><div><input type="number" id="item_number" name="item_number"></div><br>
-        <div class="left>" id = "editTable">Description</div><div><input type="text" id="item_description" name="item_description"></div><br>
-        <div class="left>" id="editTable">Common Name</div><div><input type="text" id="item_commonname" name="item_commonname"></div><br>
-        <div class="left>" id="editTable">Type</div><div><input type="text" id="item_type" name="item_type"></div><br>
-        <div class="left>" id="editTable">Vendor</div><div><input type="text" id="item_vendor" name="item_vendor"></div><br>
-        <div class="left>" id="editTable">Product Number</div><div><input type="number" id="item_productnumber" name="item_productnumber"></div><br>
-        <div class="left>" id="editTable">Box #</div><div><input type="number" id="item_boxnumber" name="item_boxnumber"></div><br>
-        <div class="left>" id="editTable">Current Stock</div><div><input type="number" id="item_stock" name="item_stock"></div><br>
-        <div class="left>" id="editTable">Restock Level</div><div><input type="number" id="item_restock" name="item_restock"></div><br>
-
-
-
-        <form class="form" action="/searchresult" method="POST">
-            <input type="submit" value="Update" formaction="/EditRow">
-        </form>
+        <div class="add-row" id="add-row">
+            <div class="left>">ItemNumber </div><div><input type="number" id="item_number2" name="item_number2"></div><br>
+            <div class="left>" >Description</div><div><input type="text" id="item_description2" name="item_description2"></div><br>
+            <div class="left>" >Common Name</div><div><input type="text" id="item_commonname2" name="item_commonname2"></div><br>
+            <div class="left>" >Type</div><div><input type="text" id="item_type2" name="item_type2"></div><br>
+            <div class="left>" >Vendor</div><div><input type="text" id="item_vendor2" name="item_vendor2"></div><br>
+            <div class="left>" >Product Number</div><div><input type="text" id="item_productnumber2" name="item_productnumber2"></div><br>
+            <div class="left>" >Box Number</div><div><input type="number" id="item_boxnumber2" name="item_boxnumber2"></div><br>
+            <div class="left>" >Current Stock</div><div><input type="number" id="item_stock2" name="item_stock2"></div><br>
+            <div class="left>" >Restock Level</div><div><input type="number" id="item_restock2" name="item_restock2"></div><br>
+            <div class="left>" >Reorder </div><div><input type="text" id="item_reorder2" name="item_reorder2"></div><br>
+            <input type="submit" value="Add Row" formaction="/addRow">
+        </div>
     </div>
 </form>
+
+
+
 
 <script type="text/javascript" src="{{ url_for('static', filename= 'js/javascript2.js')}}"> </script>
 
